@@ -1,0 +1,46 @@
+class Solution {
+ 
+    static final int MAX = 100;
+ 
+  
+static boolean isUnique(int mat[][], int i, int j, 
+                              int n, int m)
+{
+    
+    int sumrow = 0;
+    for (int k = 0; k < m; k++) {
+        sumrow += mat[i][k];
+        if (sumrow > 1)
+           return false; 
+    }
+   
+    
+    int sumcol = 0;
+    for (int k = 0; k < n; k++) {
+        sumcol += mat[k][j];
+        if (sumcol > 1)
+            return false; 
+    }
+   
+    return true;
+}
+   
+static int countUnique(int mat[][], int n, int m)
+{
+    int uniquecount = 0;
+    for (int i = 0; i < n; i++) 
+        for (int j = 0; j < m; j++) 
+            if (mat[i][j]!=0 && 
+             isUnique(mat, i, j, n, m))
+                    uniquecount++;
+    return uniquecount;
+}
+
+    static public void main(String[] args) {
+        int mat[][] = {{0, 1, 0, 0},
+        {0, 0, 1, 0},
+        {1, 0, 0, 1}};
+        System.out.print(countUnique(mat, 3, 4));
+    }
+}
+ 
